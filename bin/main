@@ -26,3 +26,16 @@ def board_show
 end
 
 board_show
+
+puts "#{player_1[:name]} choose your sign( X - O):"
+player_1[:sign] = gets.chomp.upcase!
+
+while (player_1[:sign] != "X") || (player_1[:sign] != "O")
+    puts "Incorrect input! Choose X or O!"
+    player_1[:sign] = gets.chomp.upcase!
+    player_1[:sign] == "X" ? player_2[:sign] = "O" : player_2[:sign] = "X"
+    break if player_1[:sign] == "X" || player_1[:sign] == "O"
+end
+
+puts "#{player_1[:name]} sign's: #{player_1[:sign]}"
+puts "#{player_2[:name]} sign's: #{player_2[:sign]}"
