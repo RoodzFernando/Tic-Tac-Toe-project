@@ -1,3 +1,14 @@
 #!/usr/bin/env ruby
 
-p "Hello World!"
+puts "TIC TAC TOE game!!"
+
+player_1 = Hash.new
+player_2 = Hash.new
+
+print "First player name: "
+
+player_1[:name] = gets.chomp.capitalize
+
+print "Second player name: "
+
+player_2[:name] = gets.chomp.capitalize
