@@ -38,7 +38,30 @@ end
 puts "#{player_1[:name]} sign's: #{player_1[:sign]}"
 puts "#{player_2[:name]} sign's: #{player_2[:sign]}"
 
+def game_finish?
+    if ($board[0] == $board[1])&&($board[1] == $board[2])
+        return true
+    elsif ($board[3] == $board[4])&&($board[4] == $board[5])
+        return true
+    elsif ($board[6] == $board[7])&&($board[7] == $board[8])
+        return true
+    elsif ($board[0] == $board[3])&&($board[3] == $board[6])
+        return true
+    elsif ($board[1] == $board[4])&&($board[4] == $board[7])
+        return true
+    elsif ($board[2] == $board[5])&&($board[5] == $board[8])
+        return true
+    elsif ($board[0] == $board[4])&&($board[4] == $board[8])
+        return true
+    elsif ($board[2] == $board[4])&&($board[4] == $board[6])
+        return true
+    elsif $board.all?(String)
+        draw = "yes"
+        return true
+    end
+end
 
+draw = "no"
 loop do
     board_show
     loop do
@@ -52,6 +75,8 @@ loop do
         end
     end
     board_show
+    game_checker = game_finish?
+    break if game_checker
     loop do
         puts "#{player_2[:name]}, make a move choosing a number"
         player_2[:move] = gets.chomp
@@ -62,6 +87,9 @@ loop do
             puts "Position already taken! Choose again!"
         end
     end
+    game_checker = game_finish?
+    board_show
+    break if game_checker
 end
 
 # Game continue until someone wins
