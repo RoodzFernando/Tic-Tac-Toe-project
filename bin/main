@@ -65,29 +65,28 @@ def new_game
             puts "#{player_1.name}, make a move choosing a number"
             player_1.move = gets.chomp
             player_1.move = player_1.move.to_i - 1
-            # if (@board_1[player_1.move.to_i - 1].is_a? Integer) && !((player_1.move.to_i).zero?)
             if (board_1.board_reader(player_1.move).is_a? Integer)
-                # @board[player_1.move.to_i - 1] = player_1.sign
-               board_1.board_update(player_1.sign, player_1.move)
+                board_1.board_update(player_1.sign, player_1.move)
                 break 
             else
                 puts "Invalid move! Choose again!"
             end
         end
         board_1.board_show
-        game_checker = game_finish?
+        game_checker = game_finish?(board_1)
         break if game_checker
         loop do
             puts "#{player_2.name}, make a move choosing a number"
             player_2.move = gets.chomp
-            if @board[player_2.move.to_i - 1].is_a? Integer
-                @board[player_2.move.to_i - 1] = player_2.sign
+            player_2.move = player_2.move.to_i - 1
+            if (board_1.board_reader(player_2.move).is_a? Integer)
+                board_1.board_update(player_2.sign, player_2.move)
                 break 
             else
                 puts "Position already taken! Choose again!"
             end
         end
-        game_checker = game_finish?
+        game_checker = game_finish?(board_1)
         board_1.board_show
         break if game_checker
     end
@@ -105,32 +104,32 @@ end
 
 
 
-def game_finish?
-    if (board_1.board_reader(0) == board_1.board_reader(1)) && (board_1.board_reader(1) == board_1.board_reader(2))
-        $winner = board_1.board_reader(0)
+def game_finish?(board)
+    if (board.board_reader(0) == board.board_reader(1)) && (board.board_reader(1) == board.board_reader(2))
+        $winner = board.board_reader(0)
         return true
-    elsif (board_1.board_reader(3) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(5))
-        $winner = board_1.board_reader(3)
+    elsif (board.board_reader(3) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(5))
+        $winner = board.board_reader(3)
         return true
-    elsif (board_1.board_reader(6) == board_1.board_reader(7)) && (board_1.board_reader(7) == board_1.board_reader(8))
-        $winner = board_1.board_reader(6)
+    elsif (board.board_reader(6) == board.board_reader(7)) && (board.board_reader(7) == board.board_reader(8))
+        $winner = board.board_reader(6)
         return true
-    elsif (board_1.board_reader(0) == board_1.board_reader(3)) && (board_1.board_reader(3) == board_1.board_reader(6))
-        $winner = board_1.board_reader(0)
+    elsif (board.board_reader(0) == board.board_reader(3)) && (board.board_reader(3) == board.board_reader(6))
+        $winner = board.board_reader(0)
         return true
-    elsif (board_1.board_reader(1) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(7))
-        $winner = board_1.board_reader(1)
+    elsif (board.board_reader(1) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(7))
+        $winner = board.board_reader(1)
         return true
-    elsif (board_1.board_reader(2) == board_1.board_reader(5)) && (board_1.board_reader(5) == board_1.board_reader(8))
-        $winner = board_1.board_reader(2)
+    elsif (board.board_reader(2) == board.board_reader(5)) && (board.board_reader(5) == board.board_reader(8))
+        $winner = board.board_reader(2)
         return true
-    elsif (board_1.board_reader(0) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(8))
-        $winner = board_1.board_reader(0)
+    elsif (board.board_reader(0) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(8))
+        $winner = board.board_reader(0)
         return true
-    elsif (board_1.board_reader(2) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(6))
-        $winner = board_1.board_reader(2)
+    elsif (board.board_reader(2) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(6))
+        $winner = board.board_reader(2)
         return true
-    elsif board_1.board_reader.all?String
+    elsif board.board.all?String
         return true
     end
 end
