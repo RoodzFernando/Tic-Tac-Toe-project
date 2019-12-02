@@ -8,6 +8,32 @@ class Player
     end
 end
 
+
+class Board
+    attr_accessor :board
+    def initialize
+        @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    end
+
+    def board_show
+        puts "+---+---+---+"
+        puts "| #{@board[0]} | #{@board[1]} | #{@board[2]} |"
+        puts "+---+---+---+"
+        puts "| #{@board[3]} | #{@board[4]} | #{@board[5]} |"
+        puts "+---+---+---+"
+        puts "| #{@board[6]} | #{@board[7]} | #{@board[8]} |"
+        puts "+---+---+---+"
+    end
+
+    def board_update(input, index)
+        @board[index] = input
+    end
+
+    def board_reader(position)
+        @board[position]
+    end
+end
+
 def new_game
     puts "TIC TAC TOE game!!"
 
@@ -19,8 +45,7 @@ def new_game
 
     player_2 = Player.new(gets.chomp.capitalize)
 
-    $board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+    board_1 = Board.new
     loop do
         puts "#{player_1.name} choose your sign( X - O):"
         player_1.sign = gets.chomp.upcase!
@@ -34,33 +59,36 @@ def new_game
 
     $winner = "Draw"
 
-    board_show
+    board_1.board_show
     loop do
         loop do
             puts "#{player_1.name}, make a move choosing a number"
             player_1.move = gets.chomp
-            if ($board[player_1.move.to_i - 1].is_a? Integer) && !((player_1.move.to_i).zero?)
-                $board[player_1.move.to_i - 1] = player_1.sign
+            player_1.move = player_1.move.to_i - 1
+            # if (@board_1[player_1.move.to_i - 1].is_a? Integer) && !((player_1.move.to_i).zero?)
+            if (board_1.board_reader(player_1.move).is_a? Integer)
+                # @board[player_1.move.to_i - 1] = player_1.sign
+               board_1.board_update(player_1.sign, player_1.move)
                 break 
             else
                 puts "Invalid move! Choose again!"
             end
         end
-        board_show
+        board_1.board_show
         game_checker = game_finish?
         break if game_checker
         loop do
             puts "#{player_2.name}, make a move choosing a number"
             player_2.move = gets.chomp
-            if $board[player_2.move.to_i - 1].is_a? Integer
-                $board[player_2.move.to_i - 1] = player_2.sign
+            if @board[player_2.move.to_i - 1].is_a? Integer
+                @board[player_2.move.to_i - 1] = player_2.sign
                 break 
             else
                 puts "Position already taken! Choose again!"
             end
         end
         game_checker = game_finish?
-        board_show
+        board_1.board_show
         break if game_checker
     end
 
@@ -75,51 +103,34 @@ def new_game
 
 end
 
-def board_show
-    puts "+---+---+---+"
-    puts "| #{$board[0]} | #{$board[1]} | #{$board[2]} |"
-    puts "+---+---+---+"
-    puts "| #{$board[3]} | #{$board[4]} | #{$board[5]} |"
-    puts "+---+---+---+"
-    puts "| #{$board[6]} | #{$board[7]} | #{$board[8]} |"
-    puts "+---+---+---+"
-end
+
 
 def game_finish?
-    if ($board[0] == $board[1])&&($board[1] == $board[2])
-        game_end = 1
-        $winner = $board[0]
+    if (board_1.board_reader(0) == board_1.board_reader(1)) && (board_1.board_reader(1) == board_1.board_reader(2))
+        $winner = board_1.board_reader(0)
         return true
-    elsif ($board[3] == $board[4])&&($board[4] == $board[5])
-        game_end = 2
-        $winner = $board[3]
+    elsif (board_1.board_reader(3) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(5))
+        $winner = board_1.board_reader(3)
         return true
-    elsif ($board[6] == $board[7])&&($board[7] == $board[8])
-        game_end = 3
-        $winner = $board[6]
+    elsif (board_1.board_reader(6) == board_1.board_reader(7)) && (board_1.board_reader(7) == board_1.board_reader(8))
+        $winner = board_1.board_reader(6)
         return true
-    elsif ($board[0] == $board[3])&&($board[3] == $board[6])
-        game_end = 4
-        $winner = $board[0]
+    elsif (board_1.board_reader(0) == board_1.board_reader(3)) && (board_1.board_reader(3) == board_1.board_reader(6))
+        $winner = board_1.board_reader(0)
         return true
-    elsif ($board[1] == $board[4])&&($board[4] == $board[7])
-        game_end = 5
-        $winner = $board[1]
+    elsif (board_1.board_reader(1) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(7))
+        $winner = board_1.board_reader(1)
         return true
-    elsif ($board[2] == $board[5])&&($board[5] == $board[8])
-        game_end = 6
-        $winner = $board[2]
+    elsif (board_1.board_reader(2) == board_1.board_reader(5)) && (board_1.board_reader(5) == board_1.board_reader(8))
+        $winner = board_1.board_reader(2)
         return true
-    elsif ($board[0] == $board[4])&&($board[4] == $board[8])
-        game_end = 7
-        $winner = $board[0]
+    elsif (board_1.board_reader(0) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(8))
+        $winner = board_1.board_reader(0)
         return true
-    elsif ($board[2] == $board[4])&&($board[4] == $board[6])
-        game_end = 8
-        $winner = $board[2]
+    elsif (board_1.board_reader(2) == board_1.board_reader(4)) && (board_1.board_reader(4) == board_1.board_reader(6))
+        $winner = board_1.board_reader(2)
         return true
-    elsif $board.all?(String)
-        game_end = 9
+    elsif board_1.board_reader.all?String
         return true
     end
 end
