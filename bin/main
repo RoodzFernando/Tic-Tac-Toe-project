@@ -46,20 +46,22 @@ loop do
         player_1[:move] = gets.chomp
         if $board[player_1[:move].to_i - 1].is_a? Integer
             $board[player_1[:move].to_i - 1] = player_1[:sign]
+            break 
         else
             puts "Position already taken! Choose again!"
         end
-        break if $board[player_1[:move].to_i - 1] == player_1[:sign]
-        p 'Im happening'
     end
-    p 'Out of the loop'
-    # board_show
-    # puts "#{player_2[:name]}, make a move choosing a number"
-    # player_2[:move] = gets.chomp
-    # unless $board[player_2[:move].to_i - 1] == ('X' || 'O')
-    #     $board[player_2[:move].to_i - 1] = player_2[:sign]
-    # end
-    # board_show
+    board_show
+    loop do
+        puts "#{player_2[:name]}, make a move choosing a number"
+        player_2[:move] = gets.chomp
+        if $board[player_2[:move].to_i - 1].is_a? Integer
+            $board[player_2[:move].to_i - 1] = player_2[:sign]
+            break 
+        else
+            puts "Position already taken! Choose again!"
+        end
+    end
 end
 
 # Game continue until someone wins
