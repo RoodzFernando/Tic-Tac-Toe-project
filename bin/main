@@ -84,11 +84,12 @@ loop do
     loop do
         puts "#{player_1[:name]}, make a move choosing a number"
         player_1[:move] = gets.chomp
-        if $board[player_1[:move].to_i - 1].is_a? Integer
+        if ($board[player_1[:move].to_i - 1].is_a? Integer) && !((player_1[:move].to_i).zero?)
             $board[player_1[:move].to_i - 1] = player_1[:sign]
             break 
         else
-            puts "Position already taken! Choose again!"
+            puts "Invalid move! Choose again!"
+            puts ($board[player_1[:move].to_i - 1].is_a? Integer) && ($board[player_1[:move].to_i - 1].positive?)
         end
     end
     board_show
@@ -128,5 +129,4 @@ end
 
 # Game continue until someone wins
 # puts "Congratulations! #{name} wins(or it's a draw)! Want to play again?"
-#Bug on position choosing. Accepts letters.
 puts "Choose Y to play again and N to exit the game"
