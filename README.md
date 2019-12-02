@@ -6,9 +6,13 @@ Tic Tac Toe is a strategy game. Your objective is to form a sequence in the 3 x 
 
 # How to Install and Play this Game
 1 - Make sury Ruby is installed on your computer. More information on the official [Ruby Website](https://www.ruby-lang.org/en/). The Odin Project also has a [great tutorial](https://www.theodinproject.com/courses/web-development-101/lessons/installing-ruby) on how to install Ruby.
+
 2 - Clone this repository in your computer. More information on how to do it in the next section.
+
 3 - Open your terminal and navigate to the bin folder of the project.
-4 - Run "ruby main"
+
+4 - Run "ruby main".
+
 5 - Follow the instructions on the terminal to play the game.
 
 # Getting a Copy and Contributing
