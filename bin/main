@@ -1,3 +1,48 @@
 #!/usr/bin/env ruby
 
-p "Hello World!"
+puts "TIC TAC TOE game!!"
+
+player_1 = Hash.new
+player_2 = Hash.new
+
+print "First player name: "
+
+player_1[:name] = gets.chomp.capitalize
+
+print "Second player name: "
+
+player_2[:name] = gets.chomp.capitalize
+
+$board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+def board_show
+    puts "=================="
+    puts "|| #{$board[0]} || #{$board[1]} || #{$board[2]} ||"
+    puts "=================="
+    puts "|| #{$board[3]} || #{$board[4]} || #{$board[5]} ||"
+    puts "=================="
+    puts "|| #{$board[6]} || #{$board[7]} || #{$board[8]} ||"
+    puts "=================="
+end
+
+board_show
+
+loop do
+    puts "#{player_1[:name]} choose your sign( X - O):"
+    player_1[:sign] = gets.chomp.upcase!
+    player_1[:sign] == "X" ? player_2[:sign] = "O" : player_2[:sign] = "X"
+    break if player_1[:sign] == "X" || player_1[:sign] == "O"
+    puts "Incorrect input!"
+end
+
+puts "#{player_1[:name]} sign's: #{player_1[:sign]}"
+puts "#{player_2[:name]} sign's: #{player_2[:sign]}"
+
+board_show
+puts "#{player_1[:name]}, make a move choosing a number"
+# Board updates with position selected
+puts "#{player_2[:name]}, make a move choosing a number"
+# Board updates with position selected
+# Game continue until someone wins
+puts "Congratulations! #player_winner wins (or it's a draw)! Want to play again?"
+puts "Choose Y to play again and N to exit the game"
