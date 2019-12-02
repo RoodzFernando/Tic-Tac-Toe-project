@@ -38,11 +38,18 @@ end
 puts "#{player_1[:name]} sign's: #{player_1[:sign]}"
 puts "#{player_2[:name]} sign's: #{player_2[:sign]}"
 
-board_show
-puts "#{player_1[:name]}, make a move choosing a number"
-# Board updates with position selected
-puts "#{player_2[:name]}, make a move choosing a number"
-# Board updates with position selected
+loop do
+    board_show
+    puts "#{player_1[:name]}, make a move choosing a number"
+    player_1[:move] = gets.chomp
+    $board[player_1[:move].to_i - 1] = player_1[:sign]
+    board_show
+    puts "#{player_2[:name]}, make a move choosing a number"
+    player_2[:move] = gets.chomp
+    $board[player_2[:move].to_i - 1] = player_2[:sign]
+    board_show
+end
+
 # Game continue until someone wins
 puts "Congratulations! #player_winner wins (or it's a draw)! Want to play again?"
 puts "Choose Y to play again and N to exit the game"
