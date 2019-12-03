@@ -1,72 +1,43 @@
 #!/usr/bin/env ruby
+require './lib/board'
+require './lib/player'
 
-class Player
-    attr_reader :name
-    attr_accessor :sign, :move
-    def initialize(name)
-        @name = name
-    end
-end
-
-
-class Board
-    attr_accessor :board
-    def initialize
-        @board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    end
-
-    def board_show
-        puts "+---+---+---+"
-        puts "| #{@board[0]} | #{@board[1]} | #{@board[2]} |"
-        puts "+---+---+---+"
-        puts "| #{@board[3]} | #{@board[4]} | #{@board[5]} |"
-        puts "+---+---+---+"
-        puts "| #{@board[6]} | #{@board[7]} | #{@board[8]} |"
-        puts "+---+---+---+"
-    end
-
-    def board_update(input, index)
-        @board[index] = input
-    end
-
-    def board_reader(position)
-        @board[position]
-    end
-end
-
-def new_game
-    puts "TIC TAC TOE game!!"
+def player_name
+     puts "TIC TAC TOE game!!"
 
     print "First player name: "
 
-    player_1 = Player.new(gets.chomp.capitalize)
+    $player_1 = Player.new(gets.chomp.capitalize)
 
     print "Second player name: "
 
-    player_2 = Player.new(gets.chomp.capitalize)
+    $player_2 = Player.new(gets.chomp.capitalize)
+end
+
+def new_game
 
     board_1 = Board.new
     loop do
-        puts "#{player_1.name} choose your sign( X - O):"
-        player_1.sign = gets.chomp.upcase!
-        player_1.sign == "X" ? player_2.sign = "O" : player_2.sign = "X"
-        break if player_1.sign == "X" || player_1.sign == "O"
+        puts "#{$player_1.name} choose your sign( X - O):"
+        $player_1.sign = gets.chomp.upcase!
+        $player_1.sign == "X" ? $player_2.sign = "O" : $player_2.sign = "X"
+        break if $player_1.sign == "X" || $player_1.sign == "O"
         puts "Incorrect input!"
     end
 
-    puts "#{player_1.name} sign's: #{player_1.sign}"
-    puts "#{player_2.name} sign's: #{player_2.sign}"
+    puts "#{$player_1.name} sign's: #{$player_1.sign}"
+    puts "#{$player_2.name} sign's: #{$player_2.sign}"
 
     $winner = "Draw"
 
     board_1.board_show
     loop do
         loop do
-            puts "#{player_1.name}, make a move choosing a number"
-            player_1.move = gets.chomp
-            player_1.move = player_1.move.to_i - 1
-            if (board_1.board_reader(player_1.move).is_a? Integer)
-                board_1.board_update(player_1.sign, player_1.move)
+            puts "#{$player_1.name}, make a move choosing a number"
+            $player_1.move = gets.chomp
+            $player_1.move = $player_1.move.to_i - 1
+            if (board_1.board_reader($player_1.move).is_a? Integer)
+                board_1.board_update($player_1.sign, $player_1.move)
                 break 
             else
                 puts "Invalid move! Choose again!"
@@ -76,11 +47,11 @@ def new_game
         game_checker = game_finish?(board_1)
         break if game_checker
         loop do
-            puts "#{player_2.name}, make a move choosing a number"
-            player_2.move = gets.chomp
-            player_2.move = player_2.move.to_i - 1
-            if (board_1.board_reader(player_2.move).is_a? Integer)
-                board_1.board_update(player_2.sign, player_2.move)
+            puts "#{$player_2.name}, make a move choosing a number"
+            $player_2.move = gets.chomp
+            $player_2.move = $player_2.move.to_i - 1
+            if (board_1.board_reader($player_2.move).is_a? Integer)
+                board_1.board_update($player_2.sign, $player_2.move)
                 break 
             else
                 puts "Position already taken! Choose again!"
@@ -92,10 +63,10 @@ def new_game
     end
 
     case $winner
-    when player_1.sign
-        puts "Congratulations! #{player_1.name} wins! Want to play again? (Y or N)"
-    when player_2.sign
-        puts "Congratulations! #{player_2.name} wins! Want to play again? (Y or N)"
+    when $player_1.sign
+        puts "Congratulations! #{$player_1.name} wins! Want to play again? (Y or N)"
+    when $player_2.sign
+        puts "Congratulations! #{$player_2.name} wins! Want to play again? (Y or N)"
     else
         puts "It's a draw! Want to play again? (Y or N)"
     end
@@ -133,7 +104,7 @@ def game_finish?(board)
         return true
     end
 end
-
+player_name
 new_game
 
 loop do
