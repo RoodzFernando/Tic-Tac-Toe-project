@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require './lib/board'
-require './lib/player'
+require File.expand_path('../lib/board', __dir__)
+require File.expand_path('../lib/player', __dir__)
 
 # frozen_string_literal: true
 
