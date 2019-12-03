@@ -5,6 +5,16 @@ require './lib/player'
 
 # frozen_string_literal: true
 
+def board_show(board)
+    puts '+---+---+---+'
+    puts "| #{board.board_reader(0)} | #{board.board_reader(1)} | #{board.board_reader(2)} |"
+    puts '+---+---+---+'
+    puts "| #{board.board_reader(3)} | #{board.board_reader(4)} | #{board.board_reader(5)} |"
+    puts '+---+---+---+'
+    puts "| #{board.board_reader(6)} | #{board.board_reader(7)} | #{board.board_reader(8)} |"
+    puts '+---+---+---+'
+end
+
 def player_name
     puts "TIC TAC TOE game!!"
 
@@ -18,7 +28,7 @@ def player_name
 end
 
 def player_signs
-     loop do
+    loop do
         puts "#{$player_1.name} choose your sign( X - O):"
         $player_1.sign = gets.chomp.upcase!
         $player_1.sign == "X" ? $player_2.sign = "O" : $player_2.sign = "X"
@@ -28,7 +38,7 @@ def player_signs
 end
 
 def determine_winner
-     case $winner
+    case $winner
     when $player_1.sign
         puts "Congratulations! #{$player_1.name} wins! Want to play again? (Y or N)"
     when $player_2.sign
@@ -39,7 +49,7 @@ def determine_winner
 end
 
 def player_turn(board, player)
-     loop do
+    loop do
             puts "#{player.name}, make a move choosing a number"
             player.move = gets.chomp
             player.move = player.move.to_i - 1
@@ -63,19 +73,19 @@ def new_game
 
     $winner = "Draw"
 
-    board_1.board_show
+    board_show(board_1)
     loop do
         player_turn(board_1, $player_1)
-        board_1.board_show
+        board_show(board_1)
         game_checker = game_finish?(board_1)
         break if game_checker
         player_turn(board_1, $player_2)
         game_checker = game_finish?(board_1)
-        board_1.board_show
+        board_show(board_1)
         break if game_checker
     end
 
-   determine_winner
+    determine_winner
 
 end
 
