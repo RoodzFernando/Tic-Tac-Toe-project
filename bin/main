@@ -3,7 +3,7 @@ require './lib/board'
 require './lib/player'
 
 def player_name
-     puts "TIC TAC TOE game!!"
+    puts "TIC TAC TOE game!!"
 
     print "First player name: "
 
@@ -73,37 +73,27 @@ def new_game
 
 end
 
-
-
 def game_finish?(board)
-    if (board.board_reader(0) == board.board_reader(1)) && (board.board_reader(1) == board.board_reader(2))
-        $winner = board.board_reader(0)
-        return true
-    elsif (board.board_reader(3) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(5))
-        $winner = board.board_reader(3)
-        return true
-    elsif (board.board_reader(6) == board.board_reader(7)) && (board.board_reader(7) == board.board_reader(8))
-        $winner = board.board_reader(6)
-        return true
-    elsif (board.board_reader(0) == board.board_reader(3)) && (board.board_reader(3) == board.board_reader(6))
-        $winner = board.board_reader(0)
-        return true
-    elsif (board.board_reader(1) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(7))
-        $winner = board.board_reader(1)
-        return true
-    elsif (board.board_reader(2) == board.board_reader(5)) && (board.board_reader(5) == board.board_reader(8))
-        $winner = board.board_reader(2)
-        return true
-    elsif (board.board_reader(0) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(8))
-        $winner = board.board_reader(0)
-        return true
-    elsif (board.board_reader(2) == board.board_reader(4)) && (board.board_reader(4) == board.board_reader(6))
-        $winner = board.board_reader(2)
-        return true
-    elsif board.board.all?String
-        return true
+    winning_combinations = [[board.board_reader(0), board.board_reader(1), board.board_reader(2)],
+    [board.board_reader(3), board.board_reader(4), board.board_reader(5)],
+    [board.board_reader(6), board.board_reader(7), board.board_reader(8)],
+    [board.board_reader(0), board.board_reader(3), board.board_reader(6)],
+    [board.board_reader(1), board.board_reader(4), board.board_reader(7)],
+    [board.board_reader(2), board.board_reader(5), board.board_reader(8)],
+    [board.board_reader(0), board.board_reader(4), board.board_reader(8)],
+    [board.board_reader(2), board.board_reader(4), board.board_reader(6)]]
+    result = false
+    winning_combinations.each do |e|
+        if e.all?('X') || e.all?('O')
+            $winner = e[0]
+            result = true
+        elsif board.board.all?String
+            result = true
+        end
     end
+    result
 end
+
 player_name
 new_game
 
