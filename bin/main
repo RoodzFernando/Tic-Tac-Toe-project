@@ -38,6 +38,20 @@ def determine_winner
     end
 end
 
+def player_turn(board, player)
+     loop do
+            puts "#{player.name}, make a move choosing a number"
+            player.move = gets.chomp
+            player.move = player.move.to_i - 1
+            if (board.board_reader(player.move).is_a? Integer)
+                board.board_update(player.sign, player.move)
+                break 
+            else
+                puts "Invalid move! Choose again!"
+            end
+        end
+end
+
 def new_game
 
     board_1 = Board.new
@@ -51,31 +65,11 @@ def new_game
 
     board_1.board_show
     loop do
-        loop do
-            puts "#{$player_1.name}, make a move choosing a number"
-            $player_1.move = gets.chomp
-            $player_1.move = $player_1.move.to_i - 1
-            if (board_1.board_reader($player_1.move).is_a? Integer)
-                board_1.board_update($player_1.sign, $player_1.move)
-                break 
-            else
-                puts "Invalid move! Choose again!"
-            end
-        end
+        player_turn(board_1, $player_1)
         board_1.board_show
         game_checker = game_finish?(board_1)
         break if game_checker
-        loop do
-            puts "#{$player_2.name}, make a move choosing a number"
-            $player_2.move = gets.chomp
-            $player_2.move = $player_2.move.to_i - 1
-            if (board_1.board_reader($player_2.move).is_a? Integer)
-                board_1.board_update($player_2.sign, $player_2.move)
-                break 
-            else
-                puts "Position already taken! Choose again!"
-            end
-        end
+        player_turn(board_1, $player_2)
         game_checker = game_finish?(board_1)
         board_1.board_show
         break if game_checker
