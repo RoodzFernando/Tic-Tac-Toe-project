@@ -22,10 +22,8 @@ RSpec.describe do
   end
 
   describe 'player_name' do
-    it "Assign name for players" do
-      player = Player.new("name")
-      # allow(player).to receive(:player_name).and_return("name")
-      expect(player.class).to eq(Player)
+    it "creates new players" do
+      expect(Player).to receive(:new)
     end
   end
 
