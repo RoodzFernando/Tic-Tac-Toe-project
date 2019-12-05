@@ -24,14 +24,24 @@ RSpec.describe do
   describe 'player_name' do
     it "Assign name for players" do
       player = Player.new("name")
-      allow(player).to receive(:player_name).and_return("name")
+      # allow(player).to receive(:player_name).and_return("name")
+      expect(player.class).to eq(Player)
+    end
+  end
+
+  describe 'determine_winner' do
+    it 'Check for the possible end of the game' do
+            player = Player.new("name")
+            player.sign = /X || O/
+      expect($winner == player.sign).to eq(false).and_return("It is a draw")
     end
   end
 
   describe Player do
     describe '#player_signs' do
       it "Check if the player sign is 'X' or 'O':" do
-        allow($stdin).to receive(:gets).and_return('X' || 'O')
+        player_sign = Player.new("")
+        allow(player_sign).to receive(:player_signs).and_return(/X || O/)
       end
     end
   end
