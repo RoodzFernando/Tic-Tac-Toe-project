@@ -2,7 +2,13 @@
 This is tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns. This project was suggested by [The Odin Project](https://www.theodinproject.com/courses/ruby-programming/lessons/oop) and is part of the [Microverse Curriculum](https://www.microverse.org/#world-class-curriculum).
 
 # Rules of the Game
-Tic Tac Toe is a strategy game. Your objective is to form a sequence in the 3 x 3 grid. The sequence can be a straight line, a column or a diagonal line made of three consecutive X's or O's. The first player to complete this objective is the winner! If both the players fill the grid without creating a sequence, it is considered a draw.
+Tic Tac Toe is a strategy game. Your objective is to form a sequence in the 3 x 3 grid. The sequence can be a straight line, a column or a diagonal line made of three consecutive X's or O's. The first player to complete this objective is the winner! If both the players fill the grid without creating a sequence, it is considered a draw. Below there's examples of the winning cases and the draw.
+
+![Winning line](/assets/readme-imgs/line_win.png)
+![Winning column](/assets/readme-imgs/column_win.png)
+![Winning diagonal](/assets/readme-imgs/diagonal_win.png)
+![Draw](/assets/readme-imgs/draw.png)
+
 
 # How to Install and Play this Game
 1 - Make sury Ruby is installed on your computer. More information on the official [Ruby Website](https://www.ruby-lang.org/en/). The Odin Project also has a [great tutorial](https://www.theodinproject.com/courses/web-development-101/lessons/installing-ruby) on how to install Ruby.
@@ -52,7 +58,18 @@ If you have contributions to make, send us a message telling me about your ideas
 - [Ruby](https://www.ruby-lang.org/en/) programming language.
 
 # Authors
+## Luis Novoa
+- [Github](https://github.com/luis-novoa)
+- [LinkedIn](https://www.linkedin.com/in/luismattenovoa/)
+- [Twitter](https://twitter.com/LuisMatteNovoa)
 
-- [Luis Novoa](https://github.com/luis-novoa)
-- [Roodz Fernando Fleurant](https://github.com/RoodzFernando)
+## Roodz Fernando Fleurant
+- [Github](https://github.com/RoodzFernando)
+- [LinkedIn](https://www.linkedin.com/in/roodz-fernando-fleurant/)
+- [Twitter](https://twitter.com/RoodzFernando)
 
+# Show your support
+Give a :star: if you like this project!
+
+# License
+This project is [MIT licensed](/LICENSE.md).
