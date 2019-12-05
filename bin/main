@@ -110,18 +110,22 @@ def game_finish?(board)
     result
 end
 
-player_name
-new_game
+if __FILE__ == $0
+    player_name
+    new_game
 
-loop do
-    replay = gets.chomp
-    replay.upcase!
-    case replay
-    when 'Y'
-        new_game
-    when 'N'
-        break
-    else
-        puts 'Invalid input, try Y or N!'
+    loop do
+        replay = gets.chomp
+        replay.upcase!
+        case replay
+        when 'Y'
+            new_game
+        when 'N'
+            break
+        else
+            puts 'Invalid input, try Y or N!'
+        end
     end
 end
+
+
