@@ -21,6 +21,13 @@ RSpec.describe do
     end
   end
 
+  describe 'player_name' do
+    it "Assign name for players" do
+      player = Player.new("name")
+      allow(player).to receive(:player_name).and_return("name")
+    end
+  end
+
   describe Player do
     describe '#player_signs' do
       it "Check if the player sign is 'X' or 'O':" do
@@ -29,3 +36,4 @@ RSpec.describe do
     end
   end
 end
+
