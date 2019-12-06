@@ -23,7 +23,9 @@ RSpec.describe do
 
   describe 'player_name' do
     it "creates new players" do
-      expect(Player).to receive(:new)
+      allow(player_name).to receive(:gets).with('test1')
+      expect($player_1.name).to eq('Test1')
+      # expect($player_2).to be_truthy
     end
   end
 
