@@ -21,9 +21,29 @@ RSpec.describe do
     end
   end
 
+  describe 'determine_winner' do
+    it "tells when player 1 wins" do
+      $player_1 = Player.new('Player1')
+      $player_1.sign = 'X'
+      $winner = 'X'
+      expect {determine_winner}.to output{
+        "Congratulations! Player1 wins! Want to play again? (Y or N)"
+    }.to_stdout
+    end
+
+    it "tells when player 2 wins" do
+      $player_2 = Player.new('Player2')
+      $player_2.sign = 'X'
+      $winner = 'X'
+      expect {determine_winner}.to output{
+        "Congratulations! Player2 wins! Want to play again? (Y or N)"
+    }.to_stdout
+    end
+  end
+
   describe 'player_name' do
     it "creates new players" do
-      allow(player_name).to receive(:gets).with('test1')
+      name1 = double("player1")
       expect($player_1.name).to eq('Test1')
       # expect($player_2).to be_truthy
     end
