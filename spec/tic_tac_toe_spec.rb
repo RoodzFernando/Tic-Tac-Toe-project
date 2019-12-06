@@ -33,7 +33,20 @@ RSpec.describe do
     it 'Check for the possible end of the game' do
             player = Player.new("name")
             player.sign = /X || O/
-      expect($winner == player.sign).to eq(false).and_return("It is a draw")
+      expect($winner == player.sign).to eq(false)
+    end
+  end
+
+  describe 'game_finish?' do
+    it "Check if the game is finish by a win" do
+      win =false
+      win_board = [[0,1,2],[3,4,5],[6,7,9],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+      win_board.each do |elem|
+        elem.each { |n| n = 'X'
+        win = true if n == 'X'
+        expect(win).to eq(true)
+      }
+      end
     end
   end
 
