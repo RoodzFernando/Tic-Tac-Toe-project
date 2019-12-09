@@ -51,16 +51,16 @@ RSpec.describe do
   end
 
   describe 'game_finish?' do
-    let(:win_board) { [[0, 1, 2], [3, 4, 5], [6, 7, 9], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] }
+    let(:board_test) { ['X', 'X', 'X', 4, 5, 6, 'O', 'O', 9] }
+    
+    # let(:game_checker) {false}
     it 'Check if the game is finish by a win' do
-      win = false
-      win_board.each do |elem|
-        elem.each do |n|
-          n = 'X'
-          win = true if n == 'X'
-          expect(win).to eq(true)
-        end
-      end
+
+      # allow(board_test).to receive(:board_update).with('X', 0).and_return('X')
+      # allow(board_test).to receive(:board_update).with('X', 1)
+      # allow(board_test).to receive(:board_update).with('X', 2)
+      p board_test
+          expect((board_test).include?('X')).to eq(true)
     end
   end
 
