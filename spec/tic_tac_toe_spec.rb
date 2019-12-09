@@ -21,11 +21,13 @@ RSpec.describe do
   end
 
   describe 'determine_winner' do
-    let(:player_1) {$player_1 = Player.new('Player1')}
-    let(:sign1) {$player_1.sign = 'X'}
-    let(:winner) {$winner = 'X'}
+    let(:player_1) {Player.new('Player1')}
+    let(:player_2) {Player.new('Player2')}
+    let(:winner) {'X'}
     it 'tells when player 1 wins' do
-      expect { determine_winner }.to output {
+      allow(player_1).to receive(:sign).and_return('X')
+      allow(player_2).to receive(:sign).and_return('O')
+      expect { determine_winner(winner, player_1.sign, player_2.sign) }.to output {
         'Congratulations! Player1 wins! Want to play again? (Y or N)'
       }.to_stdout
     end
