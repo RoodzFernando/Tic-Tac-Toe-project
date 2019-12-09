@@ -21,13 +21,13 @@ RSpec.describe do
   end
 
   describe 'determine_winner' do
+    let(:player_1) {$player_1 = Player.new('Player1')}
+    let(:sign1) {$player_1.sign = 'X'}
+    let(:winner) {$winner = 'X'}
     it 'tells when player 1 wins' do
-      $player_1 = Player.new('Player1')
-      $player_1.sign = 'X'
-      $winner = 'X'
       expect { determine_winner }.to output {
-                                       'Congratulations! Player1 wins! Want to play again? (Y or N)'
-                                     }.to_stdout
+        'Congratulations! Player1 wins! Want to play again? (Y or N)'
+      }.to_stdout
     end
 
     it 'tells when player 2 wins' do
@@ -35,8 +35,8 @@ RSpec.describe do
       $player_2.sign = 'X'
       $winner = 'X'
       expect { determine_winner }.to output {
-                                       'Congratulations! Player2 wins! Want to play again? (Y or N)'
-                                     }.to_stdout
+        'Congratulations! Player2 wins! Want to play again? (Y or N)'
+      }.to_stdout
     end
 
     it "tells when it's a draw" do
