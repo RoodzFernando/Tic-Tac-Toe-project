@@ -33,10 +33,9 @@ RSpec.describe do
     end
 
     it 'tells when player 2 wins' do
-      $player_2 = Player.new('Player2')
-      $player_2.sign = 'X'
-      $winner = 'X'
-      expect { determine_winner }.to output {
+      allow(player_1).to receive(:sign).and_return('O')
+      allow(player_2).to receive(:sign).and_return('X')
+      expect { determine_winner(winner, player_1, player_2) }.to output {
         'Congratulations! Player2 wins! Want to play again? (Y or N)'
       }.to_stdout
     end
