@@ -72,13 +72,4 @@ RSpec.describe do
       expect(game_finish?(board_test)).to eq(false)
     end
   end
-
-  describe Player do
-    describe '#player_signs' do
-      it "Check if the player sign is 'X' or 'O':" do
-        player_sign = Player.new('')
-        allow(player_sign).to receive(:player_signs).and_return(/X || O/)
-      end
-    end
-  end
 end
