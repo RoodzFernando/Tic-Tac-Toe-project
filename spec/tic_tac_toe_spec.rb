@@ -21,9 +21,10 @@ RSpec.describe do
   end
 
   describe 'determine_winner' do
-    let(:player_1) {Player.new('Player1')}
-    let(:player_2) {Player.new('Player2')}
-    let(:winner) {'X'}
+    let(:player_1) { Player.new('Player1') }
+    let(:player_2) { Player.new('Player2') }
+    let(:winner) { 'X' }
+    let(:no_winner) { 'Draw' }
     it 'tells when player 1 wins' do
       allow(player_1).to receive(:sign).and_return('X')
       allow(player_2).to receive(:sign).and_return('O')
@@ -41,14 +42,11 @@ RSpec.describe do
     end
 
     it "tells when it's a draw" do
-    end
-  end
-
-  describe 'determine_winner' do
-    it 'Check for the possible end of the game' do
-      player = Player.new('name')
-      player.sign = /X || O/
-      expect($winner == player.sign).to eq(false)
+      allow(player_1).to receive(:sign).and_return('O')
+      allow(player_2).to receive(:sign).and_return('X')
+      expect { determine_winner(no_winner, player_1, player_2) }.to output {
+                                                                      'It\'s a draw! Want to play again? (Y or N)'
+                                                                    } .to_stdout
     end
   end
 
