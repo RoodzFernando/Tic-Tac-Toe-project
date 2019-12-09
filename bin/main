@@ -37,12 +37,12 @@ def player_signs
     end
 end
 
-def determine_winner
-    case $winner
-    when $player_1.sign
-        puts "Congratulations! #{$player_1.name} wins! Want to play again? (Y or N)"
-    when $player_2.sign
-        puts "Congratulations! #{$player_2.name} wins! Want to play again? (Y or N)"
+def determine_winner(winning_condition, player1, player2)
+    case winning_condition
+    when player1.sign
+        puts "Congratulations! #{player1.name} wins! Want to play again? (Y or N)"
+    when player2.sign
+        puts "Congratulations! #{player2.name} wins! Want to play again? (Y or N)"
     else
         puts "It's a draw! Want to play again? (Y or N)"
     end
@@ -71,7 +71,7 @@ def new_game
     puts "#{$player_1.name} sign's: #{$player_1.sign}"
     puts "#{$player_2.name} sign's: #{$player_2.sign}"
 
-    $winner = "Draw"
+    game_checker = false
 
     board_show(board_1)
     loop do
@@ -85,7 +85,7 @@ def new_game
         break if game_checker
     end
 
-    determine_winner
+    determine_winner(game_checker, $player_1, $player_2)
 
 end
 
@@ -101,27 +101,30 @@ def game_finish?(board)
     result = false
     winning_combinations.each do |e|
         if e.all?('X') || e.all?('O')
-            $winner = e[0]
-            result = true
+            result = e[0]
         elsif board.board.all?String
-            result = true
+            result = 'Draw'
         end
     end
     result
 end
 
-player_name
-new_game
+if __FILE__ == $0
+    player_name
+    new_game
 
-loop do
-    replay = gets.chomp
-    replay.upcase!
-    case replay
-    when 'Y'
-        new_game
-    when 'N'
-        break
-    else
-        puts 'Invalid input, try Y or N!'
+    loop do
+        replay = gets.chomp
+        replay.upcase!
+        case replay
+        when 'Y'
+            new_game
+        when 'N'
+            break
+        else
+            puts 'Invalid input, try Y or N!'
+        end
     end
 end
+
+
