@@ -51,16 +51,25 @@ RSpec.describe do
   end
 
   describe 'game_finish?' do
-    let(:board_test) { ['X', 'X', 'X', 4, 5, 6, 'O', 'O', 9] }
-    
-    # let(:game_checker) {false}
-    it 'Check if the game is finish by a win' do
+    let(:board_test) { Board.new }
+    it 'Check if X wins the game' do
+      allow(board_test).to receive(:board).and_return(['X', 'X', 'X', 4, 5, 6, 'O', 'O', 9])
+      expect(game_finish?(board_test)).to eq('X')
+    end
 
-      # allow(board_test).to receive(:board_update).with('X', 0).and_return('X')
-      # allow(board_test).to receive(:board_update).with('X', 1)
-      # allow(board_test).to receive(:board_update).with('X', 2)
-      p board_test
-          expect((board_test).include?('X')).to eq(true)
+    it 'Check if O wins the game' do
+      allow(board_test).to receive(:board).and_return(['X', 'X', 3, 4, 5, 6, 'O', 'O', 'O'])
+      expect(game_finish?(board_test)).to eq('O')
+    end
+
+    it 'Check if its a draw' do
+      allow(board_test).to receive(:board).and_return(%w[X O X O O X O X O])
+      expect(game_finish?(board_test)).to eq('Draw')
+    end
+
+    it 'Check if the game isn\'t finished' do
+      allow(board_test).to receive(:board).and_return(['X', 'X', 3, 4, 5, 6, 'O', 'O', 9])
+      expect(game_finish?(board_test)).to eq(false)
     end
   end
 
